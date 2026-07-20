@@ -219,8 +219,8 @@ images/invoice.png
 
 **Om Wable**
 
-- GitHub: https://github.com/yourusername
-- LinkedIn: https://linkedin.com/in/your-linkedin
+- GitHub: https://github.com/Omwable11
+- LinkedIn: https://www.linkedin.com/in/om-wable-305b46257/
 
 ---
 
