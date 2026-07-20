@@ -1,0 +1,70 @@
+{% extends "base.html" %} {% block content %}
+
+<h2 class="mb-4">My Orders</h2>
+
+{% if orders %}
+
+<table class="table table-bordered table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>Order ID</th>
+      <th>Date</th>
+      <th>Total</th>
+      <th>Status</th>
+      <th>Invoice</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for order in orders %}
+
+    <tr>
+      <td>#{{ order.id }}</td>
+
+      <td>{{ order.created_at.strftime("%d-%m-%Y %H:%M") }}</td>
+
+      <td>₹{{ order.total }}</td>
+
+      <td>
+        {% if order.status == "Pending" %}
+
+        <span class="badge bg-warning text-dark"> {{ order.status }} </span>
+
+        {% elif order.status == "Processing" %}
+
+        <span class="badge bg-info"> {{ order.status }} </span>
+
+        {% elif order.status == "Shipped" %}
+
+        <span class="badge bg-primary"> {{ order.status }} </span>
+
+        {% elif order.status == "Delivered" %}
+
+        <span class="badge bg-success"> {{ order.status }} </span>
+
+        {% elif order.status == "Cancelled" %}
+
+        <span class="badge bg-danger"> {{ order.status }} </span>
+
+        {% endif %}
+      </td>
+
+      <td>
+        <a
+          href="{{ url_for('download_invoice', order_id=order.id) }}"
+          class="btn btn-sm btn-danger"
+        >
+          📄 Download
+        </a>
+      </td>
+    </tr>
+
+    {% endfor %}
+  </tbody>
+</table>
+
+{% else %}
+
+<div class="alert alert-info">No orders yet.</div>
+
+{% endif %} {% endblock %}

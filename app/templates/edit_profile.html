@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2 class="mb-4">Edit Profile</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <div class="mb-3">
+            <label class="form-label">Username</label>
+
+            <input
+                type="text"
+                name="username"
+                class="form-control"
+                value="{{ user.username }}"
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+
+            <input
+                type="email"
+                name="email"
+                class="form-control"
+                value="{{ user.email }}"
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Profile Image</label>
+
+            <input
+                type="file"
+                name="profile_image"
+                class="form-control"
+                accept=".jpg,.jpeg,.png,.gif">
+        </div>
+
+        <button
+            type="submit"
+            class="btn btn-primary">
+            Update Profile
+        </button>
+
+        <a
+            href="{{ url_for('profile') }}"
+            class="btn btn-secondary">
+            Cancel
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

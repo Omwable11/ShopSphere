@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card p-4">
+
+        <div class="text-center">
+
+            <img
+            src="{{ url_for('static', filename='uploads/profile_images/' ~ user.profile_image) }}"
+            width="180"
+            height="180"
+            class="rounded-circle"
+            style="object-fit:cover;">
+
+            <h3 class="mt-3">{{ user.username }}</h3>
+
+            <p>{{ user.email }}</p>
+
+        </div>
+
+        <hr>
+
+        <div class="text-center">
+
+            <a
+                href="{{ url_for('edit_profile') }}"
+                class="btn btn-warning">
+                Edit Profile
+            </a>
+
+            <a
+                href="{{ url_for('change_password') }}"
+                class="btn btn-danger">
+                Change Password
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

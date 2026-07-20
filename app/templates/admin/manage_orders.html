@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">Manage Orders</h2>
+
+<table class="table table-bordered">
+
+    <thead class="table-dark">
+
+        <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Update</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+    {% for order in orders %}
+
+    <tr>
+
+        <td>#{{ order.id }}</td>
+
+        <td>{{ order.user.username }}</td>
+
+        <td>₹{{ order.total }}</td>
+
+        <td>{{ order.status }}</td>
+
+        <td>
+
+            <form
+                method="POST"
+                action="{{ url_for('update_order_status', order_id=order.id) }}">
+
+                <select
+                    name="status"
+                    class="form-select mb-2">
+
+                    <option {% if order.status=="Pending" %}selected{% endif %}>
+                        Pending
+                    </option>
+
+                    <option {% if order.status=="Processing" %}selected{% endif %}>
+                        Processing
+                    </option>
+
+                    <option {% if order.status=="Shipped" %}selected{% endif %}>
+                        Shipped
+                    </option>
+
+                    <option {% if order.status=="Delivered" %}selected{% endif %}>
+                        Delivered
+                    </option>
+
+                    <option {% if order.status=="Cancelled" %}selected{% endif %}>
+                        Cancelled
+                    </option>
+
+                </select>
+
+                <button class="btn btn-success btn-sm">
+                    Update
+                </button>
+
+            </form>
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}
